@@ -7,8 +7,6 @@ document.querySelector('button').addEventListener('click',() => {
 })
 
 socket.on('mensajes', msjs => {
-    const mensajesHTML = msjs
-        .map(msj => `Socket ID: ${msj.socketid} -> ${msj.mensaje}`)
-        .join('<br>')
-    document.querySelector('p').innerHTML += mensajesHTML
+    const mensajesHTML = msjs.map(msj => `Socket ID: ${msj.socketid} -> ${msj.mensaje}`).join('<br>')
+    document.querySelector('p').innerHTML = mensajesHTML
 })
