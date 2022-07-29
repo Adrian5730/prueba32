@@ -1,28 +1,35 @@
-const express = require('express')
-const { Server: HttpServer } = require('http')
-const { Server: IOServer } = require('socket.io')
+var app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 
-const app = express()
-const httpServer = new HttpServer(app)
-const io = new IOServer(httpServer)
+app.get('/', function (req, res) {
+    res.send('<h1>Hello world</h1>');
+});
 
-const mensajes = []
+// When the server receives a post request on /sendData
+app.post('/sendData', function (req, res) {
 
-app.use(express.static('./public'))
+    //send data to sockets.
+    io.sockets.emit('event', { message: "Hello from server!" })
+    
+    res.send({});
+});
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: __dirname})
-})
-
+// When a new connection is requested
 io.on('connection', (socket) => {
-    console.log('Nuevo cliente conectado!')
+    console.log('User Connected!');
 
-    socket.emit('mensajes', mensajes)
+    // Send to the connected user
+    socket.emit('event', { message: 'Connected !!!!' });
+    
+    // On each "status", run this function
+    socket.on('status', function (data) {
+        console.log(data);
+    });
+});
 
-    socket.on('mensaje', data => {
-        mensajes.push({socketid: socket.id, mensaje: data})
-        io.sockets.emit('mensajes', mensajes)
-    })
-})
+// Listen to port 3000
+http.listen(3000, function () {
+    console.log('listening on *:3000');
+});
 
-httpServer.listen(8080, () => console.log('Server ON'))
