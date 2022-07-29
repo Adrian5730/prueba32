@@ -10,5 +10,5 @@ socket.on('mensajes', msjs => {
     const mensajesHTML = msjs
         .map(msj => `Socket ID: ${msj.socketid} -> ${msj.mensaje}`)
         .join('<br>')
-    documento.querySelector('p').innerHTML += msj
+    document.querySelector('p').innerHTML += mensajesHTML
 })
