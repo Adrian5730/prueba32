@@ -1,12 +1,24 @@
 {
-    "name": "esp32_socketio_server",
-    "version": "0.0.1",
-    "description": "my first socket.io app",
-    "dependencies": {
-        "express": "^4.18.1",
-        "socket.io": "^2.5.0"
-    },
-    "scripts": {
-        "start": "node index.js"
-    }
+  "name": "esp32_socketio_server",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "express": "^4.18.1",
+    "socket.io": "^2.5.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrian5730/prueba32.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adrian5730/prueba32/issues"
+  },
+  "homepage": "https://github.com/Adrian5730/prueba32#readme"
 }

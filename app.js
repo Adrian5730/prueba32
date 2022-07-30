@@ -16,7 +16,7 @@ app.post('/sendData', function (req, res) {
 });
 
 // When a new connection is requested
-io.on('connection', (socket) => {
+io.on('connection', function (socket) {
     console.log('User Connected!');
 
     // Send to the connected user
